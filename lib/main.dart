@@ -12,31 +12,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String str = "Please Nannu Am Chayoddu";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My First Flutter App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('My First Flutter App'),
+          title: Text('HEADER'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Text("TESTING"),
-            ),
-            TextButton(
-              child: Text(str),
-              onPressed: () {
-                setState(() {
-                  str = "Nokkodu ra Nannu Am Chayoddu";
-                });
-              },
-            ),
-          ],
+        body: Center(
+          child:Image.asset("images/wall.jpg"),
         ),
       ),
     );
