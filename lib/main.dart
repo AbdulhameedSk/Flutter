@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:lecle_system_shortcuts/lecle_system_shortcuts.dart';
-import 'package:lecle_system_shortcuts/lecle_system_shortcuts.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,25 +10,58 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
-
 class _MyAppState extends State<MyApp> {
+  int _selectedIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Home Page Body'),
+    Text('Business Page Body'),
+    Text('School Page Body'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Image.network("https://th.bing.com/th/id/R.7e20cfd6ef87c40f71a85de25317f5ce?rik=PQ0DW0wMB3Nd1g&riu=http%3a%2f%2fanimalstime.com%2fwp-content%2fuploads%2f2016%2f02%2feastern-bluebird-2-1068x945.jpg&ehk=x1AEJYsn0NovjytI916a%2betvxuiHo5%2fepl7gZ%2bPYCLc%3d&risl=&pid=ImgRaw&r=0",height: 100,width: 300,),
-              Center(
-                child: Text(
-                  "Sample",
-                  style: TextStyle(color: Colors.blue),
-                ),
-              ),
-            ],
+        appBar: AppBar(
+          title: const Text('Home Page'),
+          backgroundColor: Color.fromARGB(255, 23, 23, 24),
+          centerTitle: true,
+          elevation: 10,
+          shadowColor: Colors.blue,
+          titleTextStyle: const TextStyle(
+            color: Colors.blue,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
+        ),
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: 'Business',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school),
+              label: 'School',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
         ),
       ),
     );
